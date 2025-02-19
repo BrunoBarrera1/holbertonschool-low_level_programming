@@ -1,15 +1,15 @@
-#include <stdio.h>
+#include <unistd.h>
 
 /**
- * main - entry point
+ * main - Entry point
  *
- * Description: program that prints printf function
+ * Description: Program that prints _putchar
  *
- * Return: always returns 0 (Success)
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-write (1, "_putchar\n", 9);
+write(1, "_putchar\n", 9);
 
-	return (0);
+return (0);
 }
