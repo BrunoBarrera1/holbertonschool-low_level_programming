@@ -4,7 +4,7 @@
  * main - program that prints fizzbuzz from 1 to 100 depending on which number
  * Return: Always 0
  */
-int main(void);
+int main(void)
 {
 	int i;
 
