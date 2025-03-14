@@ -18,10 +18,12 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	total_size = nmemb * size;
 
-	ptr = malloc(total_size);
-	if (ptr == NULL)
+	if (size != 0 && total_size / size != nmemb)
 		return (NULL);
 
+	ptr = malloc(total_size);
+		if (ptr == NULL)
+			return (NULL);
 	memset(ptr, 0, total_size);
 
 	return (ptr);
