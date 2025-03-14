@@ -2,6 +2,16 @@
 #include <stdlib.h>
 #include "main.h"
 
+/**
+ * string_nconcat - Concatenates two strings
+ * @s1: The first string
+ * @s2: The second string
+ * @n: The maximum number of bytes of s2 to include
+ *
+ * Return: A pointer to the newly allocated space in memory containing
+ *         s1 followed by the first n bytes of s2, and null terminated.
+ *         If malloc fails, return NULL.
+ */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *result;
