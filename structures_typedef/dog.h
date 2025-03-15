@@ -1,4 +1,5 @@
-#include <stdio.h>
+#pragma once
+
 
 /**
  * struct dog - structure representating a dawg
