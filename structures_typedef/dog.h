@@ -1,15 +1,20 @@
-#pragma once
-
+#ifndef DOG_H
+#define DOG_H
 
 /**
- * struct dog - structure representating a dawg
- * @name: pointer to da dawgs name (string)
- * @age: age of that dawg (float)
- * @owner: pointer to owners name (string)
+ * struct dog - structure made to represent a dawg
+ * @name: Name (string)
+ * @age: age (float)
+ * @owner: owner string)
  */
-struct dog
+typedef struct dog
 {
 	char *name;
 	float age;
 	char *owner;
-};
+} dog_t;
+
+void init_dog(struct dog *d, char *name, float age, char *owner);
+void print_dog(struct dog *d);
+dog_t *new_dog(char *name, float age, char *owner);
+#endif
