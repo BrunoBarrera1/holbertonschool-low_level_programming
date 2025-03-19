@@ -1,5 +1,6 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
+#include <unistd.h>
 #include <stdio.h>
 
 /**
@@ -21,14 +22,28 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		str = va_arg(args, char *);
 
 		if (str == NULL)
-			printf("(nil)");
+			write(1, "(nil)", 5);
 		else
-			printf("%s", separator);
+		{
+			
+			while (*str)
+			{
+				write(1, str, 1);
+				str++;
+			}
+		}
+
 		if (separator != NULL && i < n - 1)
-			printf("%s", separator);
+		{
+			while (*separator)
+			{
+				write(1, separator, 1);
+				separator++;
+			}
+		}
 	}
 
 	va_end(args);
 
-	printf("\n");
+	write(1, "\n", 1);
 }
