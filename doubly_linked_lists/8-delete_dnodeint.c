@@ -2,7 +2,7 @@
 #include "lists.h"
 
 /**
- * delete_dnodeint_at_index - Deletes the node at index index of a dlistint_t list.
+ * delete_dnodeint_at_index - Deletes the node.
  * @head: Pointer to a pointer to the head of the list.
  * @index: Index of the node to be deleted. Index starts at 0.
  * Return: 1 if it succeeded, -1 if it failed.
