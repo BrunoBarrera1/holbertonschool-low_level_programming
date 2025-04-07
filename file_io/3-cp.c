@@ -5,25 +5,23 @@
 #include <stdio.h>
 
 /**
- * error_exit - Handles errors with a message and exits
- * @code: exit code
- * @message: error message
- * @arg: argument to include in the message
+ * error_exit - Maneja errores con un mensaje y sale
+ * @code: código de salida
+ * @message: mensaje de error
+ * @arg: argumento a incluir en el mensaje
  */
 void error_exit(int code, const char *message, const char *arg)
 {
-	if (arg)
-		dprintf(STDERR_FILENO, message, arg);
-	else
-		dprintf(STDERR_FILENO, "%s\n", message);
+	dprintf(STDERR_FILENO, message, arg);
 	exit(code);
 }
 
 /**
- * main - Copies the content of one file to another
- * @ac: number of arguments
- * @av: argument array
- * Return: 0 if successful
+ * main - Copia el contenido de un archivo a otro
+ * @ac: número de argumentos
+ * @av: arreglo de argumentos
+ *
+ * Return: 0 si todo sale bien, de lo contrario sale con código de error
  */
 int main(int ac, char **av)
 {
@@ -37,7 +35,7 @@ int main(int ac, char **av)
 	if (from_fd == -1)
 		error_exit(98, "Error: Can't read from file %s\n", av[1]);
 
-	to_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	to_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (to_fd == -1)
 	{
 		close(from_fd);
@@ -46,13 +44,13 @@ int main(int ac, char **av)
 
 	while ((rd = read(from_fd, buffer, 1024)) > 0)
 	{
-		 wr = write(to_fd, buffer, rd);
-		 if (wr == -1 || wr != rd)
-		 {
-			 close(from_fd);
-			 close(to_fd);
-			 error_exit(99, "Error: Can't write to %s\n", av[2]);
-		 }
+		wr = write(to_fd, buffer, rd);
+		if (wr != rd)
+		{
+			close(from_fd);
+			close(to_fd);
+			error_exit(99, "Error: Can't write to %s\n", av[2]);
+		}
 	}
 
 	if (rd == -1)
